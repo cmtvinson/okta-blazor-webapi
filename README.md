@@ -1,8 +1,8 @@
 # Okta + BlazorServer + WebApi 
 
 Replace Okta values in:
-	okta-blazor-server-example/appsettings.json
-	okta-webapi-example/appsettings.json
+- okta-blazor-server-example/appsettings.json
+- okta-webapi-example/appsettings.json
 
 ---
 run build.bat from command line
