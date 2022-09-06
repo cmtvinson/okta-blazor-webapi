@@ -1,0 +1,73 @@
+﻿@page "/fetchdata"
+
+<PageTitle>Weather forecast</PageTitle>
+
+@using System.Net
+@inject WeatherForecastApiService ForecastService
+@inject NavigationManager NavigationManager
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if (!string.IsNullOrEmpty(error))
+{
+    <p>@error</p>
+}
+else if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts)
+            {
+                <tr>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private WeatherForecast[] forecasts;
+    private string error = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            forecasts = await ForecastService.GetForecastAsync();
+        }
+        catch (HttpRequestException hrx)
+        {
+            switch (hrx.StatusCode)
+            {
+                case HttpStatusCode.Unauthorized:
+                    error = "need to handle this 401 error";
+                    break;
+                default:
+                    error = $"need to handle this {hrx.StatusCode.ToString()} error";
+                    break;
+            }
+        }
+        catch (Exception ex) 
+        {
+            error = $"need to handle this error: {ex.Message}";
+        }
+    }
+}
