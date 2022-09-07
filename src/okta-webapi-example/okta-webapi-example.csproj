@@ -5,6 +5,7 @@
     <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>okta_webapi_example</RootNamespace>
+    <UserSecretsId>4e180545-25b2-483d-973c-cec90f7ad18f</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

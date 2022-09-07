@@ -5,6 +5,7 @@
     <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>okta_blazor_server_example</RootNamespace>
+    <UserSecretsId>adf5d1d0-3b77-4b34-8ba8-722d5db26a16</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
